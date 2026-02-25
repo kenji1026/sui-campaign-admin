@@ -62,7 +62,7 @@ export function CustomMongoDBAdapter(
       const accounts = db.collection("accounts");
       const account = await accounts.findOne({ provider, providerAccountId });
       if (!account) return null;
-      const administrators = db.collection("administrator");
+      const administrators = db.collection("administrators");
       // Ensure userId is an ObjectId
       const userId =
         typeof account.userId === "string"
