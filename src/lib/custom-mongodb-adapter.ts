@@ -3,7 +3,7 @@ import { ObjectId, MongoClient } from "mongodb";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"; // Make sure this is installed
 
 export function CustomMongoDBAdapter(
-  clientPromise: Promise<MongoClient>
+  clientPromise: Promise<MongoClient>,
 ): Adapter {
   // Get the default adapter for delegating non-user methods
   const defaultAdapter = MongoDBAdapter(clientPromise);
@@ -62,7 +62,7 @@ export function CustomMongoDBAdapter(
       const accounts = db.collection("accounts");
       const account = await accounts.findOne({ provider, providerAccountId });
       if (!account) return null;
-      const administrators = db.collection("administrators");
+      const administrators = db.collection("administrator");
       // Ensure userId is an ObjectId
       const userId =
         typeof account.userId === "string"
